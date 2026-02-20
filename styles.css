@@ -1,0 +1,200 @@
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.sheet-container {
+    background: white;
+    width: 210mm;
+    /* A4 Width */
+    min-height: 297mm;
+    /* A4 Height */
+    padding: 20mm;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* Header */
+.sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+}
+
+.header-left h1 {
+    margin: 0;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #333;
+    border: 1px dashed transparent;
+    /* Indicator for editable */
+}
+
+.header-left h1:hover {
+    border-color: #ccc;
+    cursor: text;
+}
+
+.header-left p {
+    margin: 5px 0 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.header-right {
+    text-align: right;
+}
+
+.date-field {
+    font-weight: bold;
+    color: #333;
+}
+
+.date-field input {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* Table */
+.visitor-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.visitor-table th,
+.visitor-table td {
+    border: 1px solid #333;
+    padding: 8px;
+    /* Room for writing */
+    text-align: left;
+    height: 35px;
+    /* Ensure enough height for handwriting */
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.visitor-table th {
+    background-color: #eee;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 11px;
+    text-align: center;
+}
+
+
+
+/* Controls */
+.controls {
+    margin-top: 20px;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    margin: 0 5px;
+}
+
+button.print-btn {
+    background-color: #28a745;
+}
+
+button.save-btn {
+    background-color: #fd7e14;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* Editable cells */
+.editable-cell:focus {
+    outline: 2px solid #007bff;
+    background-color: #f0f8ff;
+}
+
+/* Toast Notifications */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease;
+}
+
+.toast.success {
+    background-color: #28a745;
+}
+
+.toast.info {
+    background-color: #17a2b8;
+}
+
+.toast.error {
+    background-color: #dc3545;
+}
+
+.toast.hidden {
+    display: none;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+
+    .sheet-container {
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .controls {
+        display: none;
+    }
+
+    .toast {
+        display: none;
+    }
+
+    .header-left h1 {
+        border: none;
+    }
+
+    /* Ensure background colors print if user allows, otherwise borders are enough */
+    .visitor-table th {
+        background-color: #eee !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
